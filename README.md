@@ -1,4 +1,4 @@
-# Nook WiFi Check Bypass
+# Nook WiFi Check Bypasss
 
 Проект для обхода проверки подключения на устройствах Barnes & Noble в регионах с ограниченным доступом.
 
