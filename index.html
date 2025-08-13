@@ -47,18 +47,33 @@
             line-height: 1.6;
         }
 
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 15px 25px;
+        .copy-container {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .copy-container input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        .copy-container button {
+            padding: 10px 20px;
             background-color: #0066cc;
             color: white;
-            text-decoration: none;
-            border-radius: 8px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
             transition: background-color 0.3s ease;
         }
 
-        .btn:hover {
+        .copy-container button:hover {
             background-color: #004a99;
         }
 
@@ -73,6 +88,36 @@
     <header>
         <h1>Nook WiFi Check Bypass</h1>
     </header>
+
+    <main>
+        <div class="post">
+            <h2>Добро пожаловать!</h2>
+            <p>Здесь вы можете использовать наш сервис для обхода проверки подключения устройств Barnes & Noble, особенно для старых моделей, таких как Nook Simple Touch.</p>
+            <p>Ниже находится ссылка, которую нужно использовать в настройках APK или устройства для отвязки от проверки:</p>
+            
+            <div class="copy-container">
+                <input type="text" id="linkField" value="https://nookwificheckbypass.github.io/bnhello.html" readonly>
+                <button onclick="copyLink()">Copy</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2025 Nook WiFi Check Bypass
+    </footer>
+
+    <script>
+        function copyLink() {
+            const copyText = document.getElementById("linkField");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // Для мобильных
+            navigator.clipboard.writeText(copyText.value).then(() => {
+                alert("Ссылка скопирована!");
+            });
+        }
+    </script>
+</body>
+</html>    </header>
 
     <main>
         <div class="post">
