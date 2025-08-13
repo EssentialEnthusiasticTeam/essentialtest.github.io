@@ -86,35 +86,76 @@
 </head>
 <body>
     <header>
-        <h1>Nook WiFi Check Bypass</h1>
+        <h1 id="headerTitle">Nook WiFi Check Bypass</h1>
     </header>
 
     <main>
         <div class="post">
-            <h2>Добро пожаловать!</h2>
-            <p>Здесь вы можете использовать наш сервис для обхода проверки подключения устройств Barnes & Noble, особенно для старых моделей, таких как Nook Simple Touch.</p>
-            <p>Ниже находится ссылка, которую нужно использовать в настройках APK или устройства для отвязки от проверки:</p>
+            <h2 id="welcomeTitle">Добро пожаловать!</h2>
+            <p id="welcomeText">Здесь вы можете использовать наш сервис для обхода проверки подключения устройств Barnes & Noble, особенно для старых моделей, таких как Nook Simple Touch.</p>
+            <p id="linkText">Ниже находится ссылка, которую нужно использовать в настройках APK или устройства для отвязки от проверки:</p>
             
             <div class="copy-container">
                 <input type="text" id="linkField" value="https://nookwificheckbypass.github.io/bnhello.html" readonly>
-                <button onclick="copyLink()">Copy</button>
+                <button onclick="copyLink()" id="copyButton">Copy</button>
             </div>
         </div>
     </main>
 
-    <footer>
+    <footer id="footerText">
         &copy; 2025 Nook WiFi Check Bypass
     </footer>
 
     <script>
+        const translations = {
+            ru: {
+                headerTitle: "Nook WiFi Check Bypass",
+                welcomeTitle: "Добро пожаловать!",
+                welcomeText: "Здесь вы можете использовать наш сервис для обхода проверки подключения устройств Barnes & Noble, особенно для старых моделей, таких как Nook Simple Touch.",
+                linkText: "Ниже находится ссылка, которую нужно использовать в настройках APK или устройства для отвязки от проверки:",
+                copyButton: "Скопировать",
+                footerText: "© 2025 Nook WiFi Check Bypass",
+                alertCopied: "Ссылка скопирована!"
+            },
+            en: {
+                headerTitle: "Nook WiFi Check Bypass",
+                welcomeTitle: "Welcome!",
+                welcomeText: "Here you can use our service to bypass connection checks for Barnes & Noble devices, especially older models like the Nook Simple Touch.",
+                linkText: "Below is the link you need to use in APK or device settings to bypass the check:",
+                copyButton: "Copy",
+                footerText: "© 2025 Nook WiFi Check Bypass",
+                alertCopied: "Link copied!"
+            }
+        };
+
+        function getLanguage() {
+            const lang = navigator.language || navigator.userLanguage;
+            if (lang.startsWith('en')) return 'en';
+            return 'ru';
+        }
+
+        function applyTranslations() {
+            const lang = getLanguage();
+            const t = translations[lang];
+            document.getElementById('headerTitle').textContent = t.headerTitle;
+            document.getElementById('welcomeTitle').textContent = t.welcomeTitle;
+            document.getElementById('welcomeText').textContent = t.welcomeText;
+            document.getElementById('linkText').textContent = t.linkText;
+            document.getElementById('copyButton').textContent = t.copyButton;
+            document.getElementById('footerText').textContent = t.footerText;
+        }
+
         function copyLink() {
             const copyText = document.getElementById("linkField");
             copyText.select();
-            copyText.setSelectionRange(0, 99999); // Для мобильных
+            copyText.setSelectionRange(0, 99999);
             navigator.clipboard.writeText(copyText.value).then(() => {
-                alert("Ссылка скопирована!");
+                const lang = getLanguage();
+                alert(translations[lang].alertCopied);
             });
         }
+
+        window.onload = applyTranslations;
     </script>
 </body>
 </html>
