@@ -1,161 +1,135 @@
-<html lang="ru">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Nook WiFi Check Bypass</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ece9e6, #ffffff);
-            margin: 0;
-            padding: 0;
-        }
+<meta charset="UTF-8">
 
-        header {
-            background-color: #0066cc;
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NTH</title>
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
+<style>
+    body {
+        margin: 0;
+        background: #000;
+        color: #fff;
 
-        main {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
 
-        .post {
-            background-color: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-        }
+        min-height: 100vh;
+        padding: 20px;
 
-        .post h2 {
-            color: #333;
-            margin-top: 0;
-        }
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
 
-        .post p {
-            color: #555;
-            line-height: 1.6;
-        }
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
 
-        .copy-container {
-            display: flex;
-            align-items: center;
-            margin-top: 15px;
-        }
+        max-width: 600px;
+        width: 100%;
+    }
 
-        .copy-container input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-            margin-right: 10px;
-        }
+    img {
+        width: 60%;
+        max-width: 220px;
+        height: auto;
+    }
 
-        .copy-container button {
-            padding: 10px 20px;
-            background-color: #0066cc;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-        }
+    .title {
+        font-size: clamp(20px, 6vw, 28px);
+        font-weight: 600;
+    }
 
-        .copy-container button:hover {
-            background-color: #004a99;
-        }
+    .subtitle {
+        font-size: clamp(12px, 3.5vw, 14px);
+        opacity: 0.7;
+    }
 
-        footer {
-            text-align: center;
-            color: #777;
-            margin: 40px 0;
+    .themes {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 24px;
+        width: 100%;
+    }
+
+    .theme-link {
+        display: block;
+        background: #111;
+        padding: 12px 16px;
+        border-radius: 12px;
+        color: #fff;
+        text-decoration: none;
+        transition: background 0.2s;
+    }
+
+    .theme-link:hover {
+        background: #222;
+    }
+
+    @media (max-width: 400px) {
+        .container {
+            gap: 12px;
         }
-    </style>
+        .themes {
+            gap: 8px;
+        }
+    }
+</style>
 </head>
+
 <body>
-    <header>
-        <h1 id="headerTitle">Nook WiFi Check Bypass</h1>
-    </header>
 
-    <main>
-        <div class="post">
-            <h2 id="welcomeTitle">Добро пожаловать!</h2>
-            <p id="welcomeText">Здесь вы можете использовать наш сервис для обхода проверки подключения устройств Barnes & Noble, особенно для старых моделей, таких как Nook Simple Touch.</p>
-            <p id="linkText">Ниже находится ссылка, которую нужно использовать в настройках APK или устройства для отвязки от проверки:</p>
-            
-            <div class="copy-container">
-                <input type="text" id="linkField" value="http://nookwificheckbypass.duckdns.org/bnhello.html" readonly>
-                <button onclick="copyLink()" id="copyButton">Copy</button>
-            </div>
-        </div>
-    </main>
+<div class="container">
 
-    <footer id="footerText">
-        &copy; 2025 Nook WiFi Check Bypass
-    </footer>
+    <img src="/essentiallogo.svg" alt="NTH Logo">
 
-    <script>
-        const translations = {
-            ru: {
-                headerTitle: "Nook WiFi Check Bypass",
-                welcomeTitle: "Добро пожаловать!",
-                welcomeText: "Здесь вы можете использовать наш сервис для обхода проверки подключения устройств Barnes & Noble, особенно для старых моделей, таких как Nook Simple Touch, ссылка может пока не работать но мы работаем над этим",
-                linkText: "Ниже находится ссылка, которую нужно использовать в настройках APK или устройства для отвязки от проверки:",
-                copyButton: "Скопировать",
-                footerText: "© 2025 Nook WiFi Check Bypass",
-                alertCopied: "Ссылка скопирована!"
-            },
-            en: {
-                headerTitle: "Nook WiFi Check Bypass",
-                welcomeTitle: "Welcome!",
-                welcomeText: "Here you can use our service to bypass connection checks for Barnes & Noble devices, especially older models like the Nook Simple Touch.",
-                linkText: "Below is the link you need to use in APK or device settings to bypass the check:",
-                copyButton: "Copy",
-                footerText: "© 2025 Nook WiFi Check Bypass",
-                alertCopied: "Link copied!"
-            }
-        };
+    <div class="title">NanoThemeHub</div>
 
-        function getLanguage() {
-            const lang = navigator.language || navigator.userLanguage;
-            if (lang.startsWith('en')) return 'en';
-            return 'ru';
-        }
+    <div class="subtitle">Themes for Nano 6 & 7</div>
 
-        function applyTranslations() {
-            const lang = getLanguage();
-            const t = translations[lang];
-            document.getElementById('headerTitle').textContent = t.headerTitle;
-            document.getElementById('welcomeTitle').textContent = t.welcomeTitle;
-            document.getElementById('welcomeText').textContent = t.welcomeText;
-            document.getElementById('linkText').textContent = t.linkText;
-            document.getElementById('copyButton').textContent = t.copyButton;
-            document.getElementById('footerText').textContent = t.footerText;
-        }
+    <div class="themes" id="themes-container">
+    
+    </div>
 
-        function copyLink() {
-            const copyText = document.getElementById("linkField");
-            copyText.select();
-            copyText.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(copyText.value).then(() => {
-                const lang = getLanguage();
-                alert(translations[lang].alertCopied);
-            });
-        }
+</div>
 
-        window.onload = applyTranslations;
-    </script>
+<script>
+
+
+const themes = [
+    {
+        "name": "Dark Nano",
+        "author": "User123",
+        "link": "/themes/dark-nano.html"
+    },
+    {
+        "name": "Minimal Nano",
+        "author": "JaneDoe",
+        "link": "/themes/minimal-nano.html"
+    },
+    {
+        "name": "Cyber Nano",
+        "author": "Neo",
+        "link": "/themes/cyber-nano.html"
+    }
+];
+
+const container = document.getElementById("themes-container");
+
+themes.forEach(theme => {
+    const a = document.createElement("a");
+    a.href = theme.link;
+    a.className = "theme-link";
+    a.textContent = `${theme.name} — ${theme.author}`;
+    container.appendChild(a);
+});
+</script>
+
 </body>
 </html>
