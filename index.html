@@ -100,15 +100,19 @@
 </div>
 
 <script>
-fetch("./themes.json")
+fetch("themes.json")
   .then(response => {
     if (!response.ok) {
-      throw new Error("Failed to load themes.json");
+      throw new Error("HTTP error: " + response.status + " " + response.statusText);
     }
     return response.json();
   })
   .then(data => {
     const container = document.getElementById("themes-container");
+
+    if (!Array.isArray(data)) {
+      throw new Error("themes.json is not an array");
+    }
 
     if (data.length === 0) {
       container.innerHTML = "<div class='subtitle'>No themes yet</div>";
@@ -125,8 +129,14 @@ fetch("./themes.json")
   })
   .catch(error => {
     console.error(error);
-    document.getElementById("themes-container").innerHTML =
-      "<div class='subtitle'>Failed to load themes</div>";
+
+    const container = document.getElementById("themes-container");
+    container.innerHTML = `
+      <div class="subtitle" style="color:#ff4d4d;">
+       Failed to load themes.
+       Error: ${error.message}
+      </div>
+    `;
   });
 </script>
 
