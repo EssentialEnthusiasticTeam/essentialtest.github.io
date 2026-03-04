@@ -102,21 +102,16 @@
 <script>
 fetch("themes.json?t=" + Date.now())
   .then(res => res.json())
-  .then(response => {
-    if (!response.ok) {
-      throw new Error("HTTP error: " + response.status + " " + response.statusText);
-    }
-    return response.json();
-  })
   .then(data => {
     const container = document.getElementById("themes-container");
+    container.innerHTML = "";
 
-    if (!Array.isArray(data)) {
-      throw new Error("themes.json is not an array");
-    }
-
-    if (data.length === 0) {
-      container.innerHTML = "<div class='subtitle'>No themes yet</div>";
+    if (!Array.isArray(data) || data.length === 0) {
+      const msg = document.createElement("div");
+      msg.className = "subtitle";
+      msg.style.opacity = "1";
+      msg.textContent = "No themes yet";
+      container.appendChild(msg);
       return;
     }
 
@@ -124,19 +119,19 @@ fetch("themes.json?t=" + Date.now())
       const a = document.createElement("a");
       a.href = theme.link;
       a.className = "theme-link";
-      a.textContent = theme.name + " — " + theme.author;
+      a.textContent = `${theme.name} — ${theme.author}`;
       container.appendChild(a);
     });
   })
   .catch(err => {
-
     const container = document.getElementById("themes-container");
-    container.innerHTML = `
-      <div class="subtitle" style="color:#ff4d4d;">
-       Failed to load themes.
-       Error: ${error.message}
-      </div>
-    `;
+    container.innerHTML = "";
+    const msg = document.createElement("div");
+    msg.className = "subtitle";
+    msg.style.color = "#ff4d4d";
+    msg.textContent = `Error: ${err.message}`;
+    container.appendChild(msg);
+    console.error(err);
   });
 </script>
 
