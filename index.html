@@ -100,35 +100,34 @@
 </div>
 
 <script>
-
-
-const themes = [
-    {
-        "name": "Dark Nano",
-        "author": "User123",
-        "link": "/themes/dark-nano.html"
-    },
-    {
-        "name": "Minimal Nano",
-        "author": "JaneDoe",
-        "link": "/themes/minimal-nano.html"
-    },
-    {
-        "name": "Cyber Nano",
-        "author": "Neo",
-        "link": "/themes/cyber-nano.html"
+fetch("themes.json")
+  .then(response => {
+    if (!response.ok) {
+      throw new Error("Failed to load themes.json");
     }
-];
+    return response.json();
+  })
+  .then(data => {
+    const container = document.getElementById("themes-container");
 
-const container = document.getElementById("themes-container");
+    if (data.length === 0) {
+      container.innerHTML = "<div class='subtitle'>No themes yet</div>";
+      return;
+    }
 
-themes.forEach(theme => {
-    const a = document.createElement("a");
-    a.href = theme.link;
-    a.className = "theme-link";
-    a.textContent = `${theme.name} — ${theme.author}`;
-    container.appendChild(a);
-});
+    data.forEach(theme => {
+      const a = document.createElement("a");
+      a.href = theme.link;
+      a.className = "theme-link";
+      a.textContent = theme.name + " — " + theme.author;
+      container.appendChild(a);
+    });
+  })
+  .catch(error => {
+    console.error(error);
+    document.getElementById("themes-container").innerHTML =
+      "<div class='subtitle'>Failed to load themes</div>";
+  });
 </script>
 
 </body>
